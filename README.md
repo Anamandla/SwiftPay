@@ -53,4 +53,4 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 
 ---
 
-*Submitted by: Anamandla Zweni | Software Engineering Assignment 3*
+*Submitted by: Anamandla Zweni (223095435) | Software Engineering Assignment 3*
