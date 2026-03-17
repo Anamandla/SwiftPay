@@ -9,7 +9,7 @@ This document describes the software architecture of SwiftPay using the **C4 Mod
 > - **Level 4 – Code:** Class/module level detail (out of scope for this phase)
 
 ---
-
+ * 
 ## Level 1 — System Context Diagram
 
 > Shows SwiftPay as a black box and illustrates all external actors and systems that interact with it.

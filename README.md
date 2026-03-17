@@ -6,10 +6,18 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 
 ## 📄 Project Documents
 
+### Assignment 3 — System Specification & Architecture
 | Document | Description |
 |---|---|
 | [SPECIFICATION.md](./SPECIFICATION.md) | Full system specification including domain, problem statement, stakeholders, functional and non-functional requirements |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | C4 architectural diagrams (Context, Container, Component) using Mermaid |
+
+### Assignment 4 — Stakeholder & System Requirements
+| Document | Description |
+|---|---|
+| [STAKEHOLDERS.md](./STAKEHOLDERS.md) | Detailed stakeholder analysis: roles, concerns, pain points, and success metrics for 8 stakeholders |
+| [SRD.md](./SRD.md) | System Requirements Document with 15 functional requirements and 13 non-functional requirements across 6 quality categories |
+| [REFLECTION.md](./REFLECTION.md) | Reflection on challenges encountered when balancing competing stakeholder needs |
 
 ---
 
@@ -45,4 +53,4 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 
 ---
 
-*Submitted by: [Your Name] | Software Engineering Assignment 3*
+*Submitted by: Anamandla Zweni | Software Engineering Assignment 3*
