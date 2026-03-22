@@ -31,7 +31,6 @@ graph TD
     SwiftPay -- "Sends emails via\nSMTP/API" --> EmailService
     EmailService -- "Delivers emails to" --> User
 ```
-![Click Here](System-Context-Diagram.png)
 ---
 
 ## Level 2 — Container Diagram
@@ -65,7 +64,6 @@ graph TD
     APIServer -- "Push notifications\n(FCM SDK)" --> FCM
     APIServer -- "Email dispatch\n(SMTP/API)" --> EmailService
 ```
-![Click Here](Container-Diagram.png)
 ---
 
 ## Level 3 — Component Diagram (Backend API Server)
@@ -114,7 +112,7 @@ graph TD
     NotificationModule -- "Email alerts" --> EmailService
     AdminModule -- "Query users & transactions" --> DB
 ```
-![Click Here](Component-Diagram(Backend-API-Server).png)
+
 ---
 
 ## Level 3 — Component Diagram (Mobile App)
@@ -158,7 +156,6 @@ graph TD
     APIService -- "REST calls (HTTPS)" --> BackendAPI
     FCM -- "Delivers push alerts" --> NotifScreen
 ```
-![Click Here](Component-Diagram(Mobile-App).png)
 ---
 
 ## End-to-End Flow Summary
@@ -185,7 +182,6 @@ sequenceDiagram
     FCM-->>U: "Transfer successful" push notification
     API-->>U: 200 OK — Transaction complete
 ```
-![Click Here](End-to-End-Flow-Summary.png)
 ---
 
 *SwiftPay — ARCHITECTURE.md | Software Engineering Assignment 3*
