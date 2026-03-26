@@ -19,6 +19,13 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 | [SRD.md](./SRD.md) | System Requirements Document with 15 functional requirements and 13 non-functional requirements across 6 quality categories |
 | [REFLECTION.md](./REFLECTION.md) | Reflection on challenges encountered when balancing competing stakeholder needs |
 
+### Assignment 5 — Use Case Modeling & Test Cases
+| Document | Description |
+|---|---|
+| [USE_CASES.md](./USE_CASES.md) | Use case diagram (Mermaid), actor explanations, and 8 detailed use case specifications with flows and alternative paths |
+| [TEST_CASES.md](./TEST_CASES.md) | 25 test cases covering 15 functional and 5 non-functional requirements, including performance and security tests |
+| [REFLECTION_A5.md](./REFLECTION_A5.md) | Reflection on challenges translating requirements into use cases and tests |
+
 ---
 
 ## 🚀 Project Overview
@@ -53,4 +60,4 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 
 ---
 
-*Submitted by: Anamandla Zweni (223095435) | Software Engineering Assignment 3*
+*Submitted by: Anamandla Zweni | Software Engineering Assignment 3*
