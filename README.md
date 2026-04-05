@@ -12,6 +12,11 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 | [SPECIFICATION.md](./SPECIFICATION.md) | Full system specification including domain, problem statement, stakeholders, functional and non-functional requirements |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | C4 architectural diagrams (Context, Container, Component) using Mermaid |
 
+### Assignment 6 — Agile Planning
+| Document | Description |
+|---|---|
+| [AGILE_PLANNING.md](./AGILE_PLANNING.md) | 15 user stories (INVEST), MoSCoW prioritised product backlog with story points, Sprint 1 plan with 19 tasks, traceability matrix, and reflection |
+
 ### Assignment 5 — Use Case Modeling & Test Cases
 | Document | Description |
 |---|---|
@@ -60,4 +65,4 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 
 ---
 
-*Submitted by: Anamandla Zweni | Software Engineering Assignment 3*
+*Submitted by: Anamandla Zweni (223095435) | Software Engineering Assignment 3*

@@ -162,7 +162,7 @@ graph TD
 | **Use Case Name** | Login / Authenticate |
 | **Actor(s)** | End User |
 | **Linked FR** | FR-02 |
-| **Description** | A registered user authenticates with email/phone and password to receive a JWT access token and gain access to the app. |
+| **Description** | A registered user authenticates with email/phone and password to receive a JWT access token and gain access to the app. |0
 | **Preconditions** | User has a registered and active (non-suspended) SwiftPay account. |
 | **Postconditions** | User receives a JWT access token (24hr) and refresh token (30 days). User is navigated to the Home Dashboard. |
 
