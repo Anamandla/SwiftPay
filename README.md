@@ -12,6 +12,13 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 | [SPECIFICATION.md](./SPECIFICATION.md) | Full system specification including domain, problem statement, stakeholders, functional and non-functional requirements |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | C4 architectural diagrams (Context, Container, Component) using Mermaid |
 
+### Assignment 7 — Kanban Board & Template Analysis
+| Document | Description |
+|---|---|
+| [template_analysis.md](./template_analysis.md) | Comparison of 4 GitHub project templates, justification for Automated Kanban selection, and 7-column customisation plan |
+| [kanban_explanation.md](./kanban_explanation.md) | Definition of Kanban, full board structure, WIP limits, column definitions, label/milestone setup, and GitHub setup guide |
+| [reflection_a7.md](./reflection_a7.md) | Reflection on template selection challenges and comparison with Trello and Jira |
+
 ### Assignment 6 — Agile Planning
 | Document | Description |
 |---|---|
@@ -29,14 +36,7 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 |---|---|
 | [STAKEHOLDERS.md](./STAKEHOLDERS.md) | Detailed stakeholder analysis: roles, concerns, pain points, and success metrics for 8 stakeholders |
 | [SRD.md](./SRD.md) | System Requirements Document with 15 functional requirements and 13 non-functional requirements across 6 quality categories |
-| [REFLECTION.md](./REFLECTION.md) | Reflection on challenges encountered when balancing competing stakeholder needs |
-
-### Assignment 5 — Use Case Modeling & Test Cases
-| Document | Description |
-|---|---|
-| [USE_CASES.md](./USE_CASES.md) | Use case diagram (Mermaid), actor explanations, and 8 detailed use case specifications with flows and alternative paths |
-| [TEST_CASES.md](./TEST_CASES.md) | 25 test cases covering 15 functional and 5 non-functional requirements, including performance and security tests |
-| [REFLECTION_A5.md](./REFLECTION_A5.md) | Reflection on challenges translating requirements into use cases and tests |
+| [REFLECTION_A4.md](./REFLECTION_A4.md) | Reflection on challenges encountered when balancing competing stakeholder needs |
 
 ---
 
