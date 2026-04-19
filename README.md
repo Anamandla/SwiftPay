@@ -12,12 +12,19 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 | [SPECIFICATION.md](./SPECIFICATION.md) | Full system specification including domain, problem statement, stakeholders, functional and non-functional requirements |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | C4 architectural diagrams (Context, Container, Component) using Mermaid |
 
+### Assignment 8 — State & Activity Modeling
+| Document | Description |
+|---|---|
+| [STATE_DIAGRAMS.md](./STATE_DIAGRAMS.md) | State transition diagrams for 8 objects: User Account, Wallet, Transaction, Push Notification, Bill Payment, JWT Session, OTP, Admin Action |
+| [ACTIVITY_DIAGRAMS.md](./ACTIVITY_DIAGRAMS.md) | Activity workflow diagrams for 8 workflows: Registration, Login, P2P Transfer, Password Reset, Bill Payment, Admin Suspend, Top Up, Transaction History |
+| [A8_REFLECTION.md](./A8_REFLECTION.md) | Reflection on granularity decisions, aligning diagrams with Agile stories, and state vs activity diagram comparison |
+
 ### Assignment 7 — Kanban Board & Template Analysis
 | Document | Description |
 |---|---|
 | [template_analysis.md](./template_analysis.md) | Comparison of 4 GitHub project templates, justification for Automated Kanban selection, and 7-column customisation plan |
 | [kanban_explanation.md](./kanban_explanation.md) | Definition of Kanban, full board structure, WIP limits, column definitions, label/milestone setup, and GitHub setup guide |
-| [reflection_a7.md](./reflection_a7.md) | Reflection on template selection challenges and comparison with Trello and Jira |
+| [reflection.md](./reflection.md) | Reflection on template selection challenges and comparison with Trello and Jira |
 
 ### Assignment 6 — Agile Planning
 | Document | Description |
@@ -36,7 +43,7 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 |---|---|
 | [STAKEHOLDERS.md](./STAKEHOLDERS.md) | Detailed stakeholder analysis: roles, concerns, pain points, and success metrics for 8 stakeholders |
 | [SRD.md](./SRD.md) | System Requirements Document with 15 functional requirements and 13 non-functional requirements across 6 quality categories |
-| [REFLECTION_A4.md](./REFLECTION_A4.md) | Reflection on challenges encountered when balancing competing stakeholder needs |
+| [REFLECTION.md](./REFLECTION.md) | Reflection on challenges encountered when balancing competing stakeholder needs |
 
 ---
 
@@ -72,4 +79,4 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 
 ---
 
-*Submitted by: Anamandla Zweni (223095435) | Software Engineering Assignment 3*
+*Submitted by: Anamandla Zweni(223095435) | Software Engineering Assignment 3*
