@@ -12,6 +12,13 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 | [SPECIFICATION.md](./SPECIFICATION.md) | Full system specification including domain, problem statement, stakeholders, functional and non-functional requirements |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | C4 architectural diagrams (Context, Container, Component) using Mermaid |
 
+### Assignment 9 — Domain Modeling & Class Diagram
+| Document | Description |
+|---|---|
+| [DOMAIN_MODEL.md](./DOMAIN_MODEL.md) | Domain model for 7 entities: User, Wallet, Transaction, Notification, OTP, AuditLog, Session — with attributes, methods, relationships, and 15 business rules |
+| [CLASS_DIAGRAM.md](./CLASS_DIAGRAM.md) | Full UML class diagram in Mermaid.js with 10 classes, 3 interfaces, 9 enumerations, composition/inheritance/association relationships, multiplicity, and design decision explanations |
+| [A9_REFLECTION.md](./A9_REFLECTION.md) | Reflection on abstraction challenges, alignment with prior assignments, composition vs inheritance trade-offs, and OO design lessons |
+
 ### Assignment 8 — State & Activity Modeling
 | Document | Description |
 |---|---|
@@ -79,4 +86,4 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 
 ---
 
-*Submitted by: Anamandla Zweni(223095435) | Software Engineering Assignment 3*
+*Submitted by: Anamandla Zweni (223095435) | Software Engineering Assignment 3*
