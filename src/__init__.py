@@ -1,0 +1,1 @@
+"""SwiftPay source package."""
