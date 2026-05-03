@@ -12,6 +12,38 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 | [SPECIFICATION.md](./SPECIFICATION.md) | Full system specification including domain, problem statement, stakeholders, functional and non-functional requirements |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | C4 architectural diagrams (Context, Container, Component) using Mermaid |
 
+### Assignment 10 — From Class Diagrams to Code + Creational Patterns
+| Document | Description |
+|---|---|
+| [src/models.py](./src/models.py) | Full Python implementation of all 7 domain classes (User, Wallet, Transaction, Notification, OTP, Session, AuditLog) translated from the UML class diagram |
+| [creational_patterns/simple_factory.py](./creational_patterns/simple_factory.py) | **Simple Factory** — `NotificationFactory` centralises creation of all 5 notification types |
+| [creational_patterns/factory_method.py](./creational_patterns/factory_method.py) | **Factory Method** — `PaymentProcessor` abstract base with `TransferProcessor`, `TopUpProcessor`, `BillPaymentProcessor` subclasses |
+| [creational_patterns/abstract_factory.py](./creational_patterns/abstract_factory.py) | **Abstract Factory** — `NotificationServiceFactory` creates matched families of push notifier + email sender for Production and Testing environments |
+| [creational_patterns/builder.py](./creational_patterns/builder.py) | **Builder** — `UserBuilder` constructs Users step-by-step with validation; `UserDirector` provides convenience configurations |
+| [creational_patterns/prototype.py](./creational_patterns/prototype.py) | **Prototype** — `TransactionPrototypeCache` stores and deep-clones pre-configured Transaction templates |
+| [creational_patterns/singleton.py](./creational_patterns/singleton.py) | **Singleton** — `DatabaseConnectionPool` with thread-safe double-checked locking |
+| [tests/run_tests.py](./tests/run_tests.py) | Standalone test runner — 50 tests, 50 passing, no external dependencies |
+| [CHANGELOG.md](./CHANGELOG.md) | Full change log tracking all Assignment 10 progress |
+
+#### Language Choice
+**Python 3.10+** was chosen because:
+- The class diagram maps cleanly to Python's `dataclass`-style classes and `Enum` types
+- Python's `abc.ABC` and `@abstractmethod` support the Factory Method and Abstract Factory patterns natively
+- `threading.Lock` provides the concurrency primitives needed for a thread-safe Singleton
+- `copy.deepcopy` makes the Prototype pattern trivial to implement correctly
+- No compilation step — tests run immediately with `python3 tests/run_tests.py`
+
+#### Creational Pattern Rationale
+
+| Pattern | Applied To | Justification |
+|---|---|---|
+| **Simple Factory** | `NotificationFactory` | 5 notification types share identical construction logic but differ only in title/body templates. Centralising creation eliminates copy-pasted template strings across the codebase. |
+| **Factory Method** | `PaymentProcessor` → `TransferProcessor`, `TopUpProcessor`, `BillPaymentProcessor` | Each payment type has different validation rules (balance check, required fields). Delegating to subclasses keeps each processor focused without a monolithic if/else chain. |
+| **Abstract Factory** | `NotificationServiceFactory` → `ProductionNotificationFactory`, `TestingNotificationFactory` | The system must swap the entire notification stack (FCM + SendGrid) between production and test environments. The Abstract Factory guarantees all products come from the same family — no accidental real FCM calls in unit tests. |
+| **Builder** | `UserBuilder` | User creation involves mandatory field validation, optional activation, optional wallet credit, and password hashing. A builder enforces the construction sequence and prevents partially-built User objects from being used. |
+| **Prototype** | `TransactionPrototypeCache` | Creating a Transaction with correct defaults (currency, type, initial status) is repetitive. The cache stores validated templates and produces independent deep-copied clones, guaranteeing each transaction starts from a known-good state. |
+| **Singleton** | `DatabaseConnectionPool` | Multiple connection pool instances would exhaust database connections and cause race conditions. One pool, created once, reused everywhere — with thread-safe double-checked locking for concurrent access safety. |
+
 ### Assignment 9 — Domain Modeling & Class Diagram
 | Document | Description |
 |---|---|
@@ -86,4 +118,4 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 
 ---
 
-*Submitted by: Anamandla Zweni (223095435) | Software Engineering Assignment 3*
+*Submitted by: Anamandla Zweni(223095435) | Software Engineering Assignment 3*
