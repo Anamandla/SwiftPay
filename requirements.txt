@@ -1,0 +1,5 @@
+# SwiftPay — Python dependencies
+# Core: Python 3.10+ stdlib only (no external packages for domain/services/API)
+# Testing tools (optional, for enhanced coverage reporting)
+# pytest>=7.0.0
+# pytest-cov>=4.0.0

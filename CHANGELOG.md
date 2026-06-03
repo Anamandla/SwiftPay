@@ -176,3 +176,91 @@ The following Sprint 1 task issues should be moved to **Done** on the Kanban boa
 ---
 
 *SwiftPay — CHANGELOG.md*
+
+---
+
+## [Assignment 15] — Cross-Project Contributions
+
+### Added
+- `CONTRIBUTION_PLAN.md` — 3-project contribution strategy with phased approach (docs → tests → bug fixes)
+- `MERGED_PRS.md` — tracking table for all submitted and merged PRs to peer repositories
+- `REFLECTION_A15.md` — reflection on contributing to unfamiliar codebases, CI failures, and review cycles
+
+---
+
+## [Assignment 14] — Peer Review & Open-Source Preparation
+
+### Added
+- `CONTRIBUTING.md` — full contributor guide: prerequisites, setup, coding standards, testing, PR process
+- `ROADMAP.md` — 4-phase feature roadmap (MVP hardening → storage → features → quality) with contributor labels
+- `VOTING_RESULTS.md` — peer engagement tracking table (stars, forks, feedback)
+- `REFLECTION_A14.md` — reflection on improving repo for contributors, onboarding challenges, open-source lessons
+- `LICENSE` — MIT License added
+- GitHub issue labels: `good-first-issue` (5+ issues), `feature-request` (3+ issues), `help-wanted`
+
+---
+
+## [Assignment 13] — CI/CD with GitHub Actions
+
+### Added
+- `.github/workflows/ci.yml` — full CI/CD pipeline:
+  - **CI job (`test`)**: triggers on every push and PR; sets up Python 3.11; runs all 4 test suites
+  - **CD job (`release`)**: triggers only on merge to `main`; builds zip artifact; creates GitHub Release with changelog
+- `PROTECTION.md` — branch protection rules documentation and setup guide
+- `requirements.txt` — Python dependency manifest
+- `setup.py` — package setup for artifact building
+- `README.md` updated with "How to Run Tests Locally" and "How the CI/CD Pipeline Works" sections
+
+### GitHub Branch Protection Rules Applied
+- Require PR reviews (min 1) before merge to `main`
+- Require `test` CI status check to pass
+- Require branches to be up to date
+- No direct pushes to `main`
+
+---
+
+## [Assignment 12] — Service Layer & REST API
+
+### Added — Services (`/services`)
+- `services/__init__.py`
+- `services/user_service.py` — `UserService`: register, authenticate, get_by_id, get_all, suspend, reactivate, update_profile, count
+- `services/transaction_service.py` — `TransactionService`: transfer (atomic), top_up, get_history, get_by_id, get_all, count
+- `services/wallet_service.py` — `WalletService`: get_balance, get_wallet
+
+### Added — REST API (`/api`)
+- `api/__init__.py`
+- `api/app.py` — stdlib `http.server` REST API with 13 endpoints; `RepositoryFactory` DI; OpenAPI spec auto-served at `/api/docs`; environment variable `SWIFTPAY_STORAGE` selects backend
+
+### Added — API Documentation (`/docs`)
+- `docs/openapi.yaml` — full OpenAPI 3.0 specification with all 13 endpoints, request/response schemas, error codes
+
+### Added — Tests
+- `tests/services/test_user_service.py` — 11 UserService tests (registration, auth, suspend/reactivate, validation edge cases)
+- `tests/services/test_transaction_service.py` — 7 TransactionService tests (transfer, top-up, history, suspended sender, insufficient funds)
+- `tests/api/test_api.py` — 10 API integration tests (health, CRUD, transfer, auth, error responses)
+- `tests/run_all_tests.py` — master test runner aggregating all suites
+
+### Test Results: 41/41 passing ✅
+
+---
+
+## [Assignment 11] — Repository Layer
+
+### Added — Repository Interfaces (`/repositories`)
+- `repositories/__init__.py`
+- `repositories/base.py` — Generic `Repository[T, ID]` ABC with: `save()`, `find_by_id()`, `find_all()`, `delete()`, `exists()`, `count()`
+- `repositories/interfaces.py` — Entity-specific interfaces: `UserRepository` (+ email/phone/status lookups), `WalletRepository` (+ user_id lookup), `TransactionRepository` (+ sender/recipient/status/type/wallet queries)
+
+### Added — In-Memory Implementations (`/repositories/inmemory`)
+- `repositories/inmemory/__init__.py`
+- `repositories/inmemory/user_repository.py` — `InMemoryUserRepository`: HashMap + email/phone secondary indexes; `DuplicateUserError` on conflicting email/phone
+- `repositories/inmemory/wallet_repository.py` — `InMemoryWalletRepository`: HashMap + user_id index
+- `repositories/inmemory/transaction_repository.py` — `InMemoryTransactionRepository`: HashMap with rich query support
+
+### Added — Factory & Stubs (`/repositories/factory.py`)
+- `RepositoryFactory` — switches between MEMORY / FILE / DATABASE by string key
+- `FileSystemUserRepositoryStub`, `FileSystemWalletRepositoryStub`, `FileSystemTransactionRepositoryStub` — JSON filesystem stubs (future implementation)
+- `DatabaseUserRepositoryStub`, `DatabaseWalletRepositoryStub`, `DatabaseTransactionRepositoryStub` — PostgreSQL stubs (future implementation)
+
+### Added — Tests
+- `tests/test_repositories.py` — 14 repository tests: CRUD operations, secondary index lookups, duplicate detection, factory validation

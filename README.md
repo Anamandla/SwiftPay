@@ -12,6 +12,79 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 | [SPECIFICATION.md](./SPECIFICATION.md) | Full system specification including domain, problem statement, stakeholders, functional and non-functional requirements |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | C4 architectural diagrams (Context, Container, Component) using Mermaid |
 
+### Assignment 15 — Cross-Project Contributions
+| Document | Description |
+|---|---|
+| [CONTRIBUTION_PLAN.md](./CONTRIBUTION_PLAN.md) | Strategy for contributing to 3 peer repositories — issue selection, phased approach, PR principles |
+| [MERGED_PRS.md](./MERGED_PRS.md) | Log of all submitted and merged PRs to peer repositories |
+| [REFLECTION_A15.md](./REFLECTION_A15.md) | Reflection on cross-project collaboration, CI failures, review cycles |
+
+### Assignment 14 — Peer Review & Open-Source Preparation
+| Document | Description |
+|---|---|
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Full contributor guide: setup, coding standards, testing requirements, PR process |
+| [ROADMAP.md](./ROADMAP.md) | 4-phase feature roadmap with `good-first-issue` and `feature-request` labels |
+| [VOTING_RESULTS.md](./VOTING_RESULTS.md) | Peer star/fork tracking table and feedback log |
+| [REFLECTION_A14.md](./REFLECTION_A14.md) | Reflection on onboarding contributors and open-source best practices |
+| [LICENSE](./LICENSE) | MIT License |
+
+### Assignment 13 — CI/CD with GitHub Actions
+| Document | Description |
+|---|---|
+| [.github/workflows/ci.yml](./.github/workflows/ci.yml) | Full CI/CD pipeline: test automation on every push/PR + release artifact on merge to main |
+| [PROTECTION.md](./PROTECTION.md) | Branch protection rules explanation and setup guide |
+
+#### How to Run Tests Locally
+```bash
+git clone https://github.com/YOUR_USERNAME/SwiftPay.git
+cd SwiftPay
+python3 --version          # Requires Python 3.10+
+python3 tests/run_all_tests.py   # Runs all 41 tests — no pip install needed
+```
+
+#### How the CI/CD Pipeline Works
+Every push triggers the `test` job which runs all 4 test suites. If all pass, and the push is to `main`, the `release` job builds a zip artifact and creates a GitHub Release automatically. PRs to `main` are blocked from merging unless the `test` job passes.
+
+### Assignment 12 — Service Layer & REST API
+| Document | Description |
+|---|---|
+| [services/user_service.py](./services/user_service.py) | UserService — registration, auth, suspend/reactivate, profile update |
+| [services/transaction_service.py](./services/transaction_service.py) | TransactionService — P2P transfer, top-up, history |
+| [services/wallet_service.py](./services/wallet_service.py) | WalletService — balance retrieval |
+| [api/app.py](./api/app.py) | REST API (stdlib http.server) — 13 endpoints across Users, Auth, Transactions, Wallet |
+| [docs/openapi.yaml](./docs/openapi.yaml) | Full OpenAPI 3.0 specification |
+| [tests/services/](./tests/services/) | Unit tests for UserService (11 tests) and TransactionService (7 tests) |
+| [tests/api/test_api.py](./tests/api/test_api.py) | API integration tests (10 tests) |
+
+#### API Endpoints Quick Reference
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/health` | Health check |
+| POST | `/api/auth/login` | Authenticate user |
+| GET | `/api/users` | List all users |
+| POST | `/api/users` | Register user |
+| GET | `/api/users/{id}` | Get user by ID |
+| PUT | `/api/users/{id}` | Update profile |
+| GET | `/api/users/{id}/balance` | Get wallet balance |
+| GET | `/api/users/{id}/transactions` | Transaction history |
+| POST | `/api/users/{id}/suspend` | Suspend account (admin) |
+| POST | `/api/users/{id}/reactivate` | Reactivate account (admin) |
+| POST | `/api/transactions/transfer` | P2P money transfer |
+| POST | `/api/transactions/topup` | Top up wallet |
+| GET | `/api/transactions` | List all transactions (admin) |
+
+### Assignment 11 — Repository Layer
+| Document | Description |
+|---|---|
+| [repositories/base.py](./repositories/base.py) | Generic `Repository[T, ID]` interface with 6 CRUD operations |
+| [repositories/interfaces.py](./repositories/interfaces.py) | Entity-specific interfaces: `UserRepository`, `WalletRepository`, `TransactionRepository` |
+| [repositories/inmemory/](./repositories/inmemory/) | HashMap-backed implementations of all three repository interfaces |
+| [repositories/factory.py](./repositories/factory.py) | `RepositoryFactory` — switches between MEMORY / FILE / DATABASE backends by string key; includes filesystem and PostgreSQL stubs for future-proofing |
+| [tests/test_repositories.py](./tests/test_repositories.py) | 14 repository unit tests |
+
+#### Repository Abstraction Choice: Factory Pattern
+The `RepositoryFactory` was chosen over Dependency Injection frameworks because SwiftPay uses Python's stdlib only — no Spring, no FastAPI, no DI container. The factory provides the same decoupling benefit (storage backend swappable by changing one string) with zero external dependencies. The `SWIFTPAY_STORAGE` environment variable controls which backend is used at runtime.
+
 ### Assignment 10 — From Class Diagrams to Code + Creational Patterns
 | Document | Description |
 |---|---|
@@ -118,4 +191,4 @@ SwiftPay is a mobile-first payment application that enables users to send money,
 
 ---
 
-*Submitted by: Anamandla Zweni(223095435) | Software Engineering Assignment 3*
+*Submitted by: Anamandla Zweni - 223095435 | Software Engineering Assignment 3*

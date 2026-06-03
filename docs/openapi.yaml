@@ -1,0 +1,258 @@
+openapi: "3.0.0"
+info:
+  title: SwiftPay REST API
+  version: "1.0.0"
+  description: |
+    SwiftPay Mobile Payment Platform API.
+    Provides endpoints for user management, authentication, wallet operations, and transactions.
+  contact:
+    name: SwiftPay Team
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+tags:
+  - name: System
+    description: Health and status
+  - name: Auth
+    description: Authentication endpoints
+  - name: Users
+    description: User account management
+  - name: Wallet
+    description: Wallet balance operations
+  - name: Transactions
+    description: Money transfers and payments
+
+paths:
+  /api/health:
+    get:
+      tags: [System]
+      summary: Health check
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: ok }
+                  users: { type: integer, example: 42 }
+                  transactions: { type: integer, example: 157 }
+
+  /api/auth/login:
+    post:
+      tags: [Auth]
+      summary: Authenticate user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, example: alice@example.com }
+                password: { type: string, example: SecurePass123! }
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: { type: string }
+                  user_id: { type: string }
+                  name: { type: string }
+        "401":
+          description: Invalid credentials
+
+  /api/users:
+    get:
+      tags: [Users]
+      summary: List all users (admin)
+      responses:
+        "200":
+          description: List of users
+    post:
+      tags: [Users]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, phone, password]
+              properties:
+                name: { type: string, example: Alice Dlamini }
+                email: { type: string, example: alice@example.com }
+                phone: { type: string, example: "+27821234567" }
+                password: { type: string, example: SecurePass123! }
+      responses:
+        "201": { description: User registered successfully }
+        "422": { description: Validation error (duplicate email/phone, weak password) }
+
+  /api/users/{id}:
+    get:
+      tags: [Users]
+      summary: Get user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: User object }
+        "404": { description: User not found }
+    put:
+      tags: [Users]
+      summary: Update user profile
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                phone: { type: string }
+      responses:
+        "200": { description: Profile updated }
+        "404": { description: User not found }
+
+  /api/users/{id}/balance:
+    get:
+      tags: [Wallet]
+      summary: Get wallet balance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Current balance
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id: { type: string }
+                  balance: { type: string, example: "1250.00" }
+                  currency: { type: string, example: ZAR }
+
+  /api/users/{id}/transactions:
+    get:
+      tags: [Transactions]
+      summary: Get transaction history for user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: List of transactions }
+
+  /api/users/{id}/suspend:
+    post:
+      tags: [Users]
+      summary: Suspend a user account (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                admin_id: { type: string }
+                reason: { type: string }
+      responses:
+        "200": { description: User suspended }
+        "404": { description: User not found }
+
+  /api/users/{id}/reactivate:
+    post:
+      tags: [Users]
+      summary: Reactivate a suspended user (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: User reactivated }
+
+  /api/transactions:
+    get:
+      tags: [Transactions]
+      summary: List all transactions (admin)
+      responses:
+        "200": { description: All transactions }
+
+  /api/transactions/{id}:
+    get:
+      tags: [Transactions]
+      summary: Get transaction by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Transaction object }
+        "404": { description: Not found }
+
+  /api/transactions/transfer:
+    post:
+      tags: [Transactions]
+      summary: P2P money transfer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sender_id, recipient_phone, amount]
+              properties:
+                sender_id: { type: string }
+                recipient_phone: { type: string, example: "+27822222222" }
+                amount: { type: number, example: 150.00 }
+      responses:
+        "201": { description: Transfer completed }
+        "422": { description: Insufficient funds or invalid input }
+        "404": { description: Sender or recipient not found }
+
+  /api/transactions/topup:
+    post:
+      tags: [Transactions]
+      summary: Top up wallet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user_id, amount]
+              properties:
+                user_id: { type: string }
+                amount: { type: number, example: 500.00 }
+      responses:
+        "201": { description: Wallet topped up }
+        "422": { description: Invalid amount }
+
+  /api/docs:
+    get:
+      tags: [System]
+      summary: OpenAPI specification (JSON)
+      responses:
+        "200": { description: OpenAPI spec }
