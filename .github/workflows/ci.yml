@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [main]
 
+# ── Grant GITHUB_TOKEN the permissions it needs ───────────────────────────────
+permissions:
+  contents: write   # required to create releases and upload artifacts
+  actions: read
+  checks: write
+
 jobs:
   # ── CI: Test Automation ────────────────────────────────────────────────────
   test:
@@ -54,6 +60,10 @@ jobs:
     needs: test
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
+    # Explicit permissions on the job level too (belt-and-suspenders)
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -63,45 +73,49 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install build tools
-        run: pip install build wheel
-
-      - name: Build Python wheel artifact
+      - name: Build release zip artifact
         run: |
-          python -m build --wheel --outdir dist/ || python setup.py bdist_wheel --dist-dir dist/ 2>/dev/null || \
-          (mkdir -p dist && zip -r dist/swiftpay-1.0.0.zip src/ services/ repositories/ api/ --exclude "**/__pycache__/*")
+          mkdir -p dist
+          zip -r dist/swiftpay-${{ github.run_number }}.zip \
+            src/ services/ repositories/ api/ tests/ docs/ \
+            requirements.txt setup.py README.md \
+            --exclude "**/__pycache__/*" "**/*.pyc"
           echo "BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
+          echo "RELEASE_TAG=v1.0.${{ github.run_number }}" >> $GITHUB_ENV
 
-      - name: Upload release artifact
+      - name: Upload artifact to Actions
         uses: actions/upload-artifact@v4
         with:
-          name: swiftpay-release-${{ github.sha }}
+          name: swiftpay-release-${{ github.run_number }}
           path: dist/
           retention-days: 30
 
       - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/heads/main')
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: SwiftPay Release v1.0.${{ github.run_number }}
+          name: "SwiftPay v1.0.${{ github.run_number }}"
           body: |
-            ## SwiftPay Release
+            ## SwiftPay Release v1.0.${{ github.run_number }}
 
-            **Built from:** `${{ github.sha }}`
-            **Date:** ${{ env.BUILD_DATE }}
+            **Commit:** `${{ github.sha }}`
+            **Built:** ${{ env.BUILD_DATE }}
 
-            ### What's included
+            ### Included
             - Domain model (User, Wallet, Transaction)
-            - Repository layer (In-Memory + Stubs)
+            - Repository layer (In-Memory + stubs)
             - Service layer (UserService, TransactionService, WalletService)
-            - REST API (Users, Transactions, Auth, Health)
+            - REST API — 13 endpoints
             - 41 passing tests
 
-            ### Test Results
-            All tests passed before this release was created.
+            ### How to run
+            ```bash
+            python3 --version        # needs 3.10+
+            python3 tests/run_all_tests.py
+            python3 api/app.py       # starts API on port 8000
+            ```
           files: dist/*
           draft: false
           prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Uses GITHUB_TOKEN automatically — no secret needed
+          token: ${{ secrets.GITHUB_TOKEN }}
