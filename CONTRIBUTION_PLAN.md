@@ -15,8 +15,17 @@ The strategy prioritises small, well-tested contributions that can pass CI quick
 | # | Repository | Owner | Why Selected | Issues Identified |
 |---|---|---|---|---|
 | 1 | *TailorFit* | *znxos* | Clear CONTRIBUTING.md, `good-first-issue` labels, active CI | *issue 38 max length job description* |
-| 2 | *(peer repo name)* | *(username)* | Good domain model, missing test coverage for edge cases | *(e.g. Issue #8: Write tests for wallet debit with zero amount)* |
-| 3 | *(peer repo name)* | *(username)* | Needs README improvements and setup instructions | *(e.g. Issue #5: Improve Getting Started section)* |
+| 2 | *AI-Adaptive-Learning-System* | *RodrigueNdzana* | Good domain model, missing user friendliness with exception messages | *issue-45-improve-exception-messages* |
+| 3 | *SentinelPay* | *Teboho66* | Logging is additive. The structlog docs are excellent and the configuration is straightforward.| *issue-19-structured-json-logging* |
+
+### 1. TailorFit:
+<img width="1305" height="1220" alt="Screenshot_8-6-2026_122830_github com" src="https://github.com/user-attachments/assets/5a232a45-f403-4e18-b365-4eadc75c61e0" />
+
+### 2. AI-Adaptive-Learning-System:
+<img width="1302" height="1905" alt="image" src="https://github.com/user-attachments/assets/5533ed81-19a2-412a-bb1d-6818c556134b" />
+
+### 3. SentinelPay:
+<img width="1304" height="2066" alt="image" src="https://github.com/user-attachments/assets/6c33428c-8547-4614-98a8-bc01d366d6c5" />
 
 ---
 
