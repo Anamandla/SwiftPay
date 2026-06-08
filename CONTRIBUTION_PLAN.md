@@ -14,13 +14,9 @@ The strategy prioritises small, well-tested contributions that can pass CI quick
 
 | # | Repository | Owner | Why Selected | Issues Identified |
 |---|---|---|---|---|
-| 1 | *(peer repo name)* | *(username)* | Clear CONTRIBUTING.md, `good-first-issue` labels, active CI | *(e.g. Issue #12: Add input validation to register endpoint)* |
+| 1 | *TailorFit* | *znxos* | Clear CONTRIBUTING.md, `good-first-issue` labels, active CI | *issue 38 max length job description* |
 | 2 | *(peer repo name)* | *(username)* | Good domain model, missing test coverage for edge cases | *(e.g. Issue #8: Write tests for wallet debit with zero amount)* |
 | 3 | *(peer repo name)* | *(username)* | Needs README improvements and setup instructions | *(e.g. Issue #5: Improve Getting Started section)* |
-
-> **How to fill this in:** After the class forum/WhatsApp sharing session (Assignment 14),
-> browse classmates' repos, find issues labelled `good-first-issue` or `help-wanted`,
-> and update this table before starting any work.
 
 ---
 
