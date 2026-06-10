@@ -1,5 +1,9 @@
 # 💸 SwiftPay — Mobile Payment App
 
+[![CI](https://github.com/Anamandla/SwiftPay/actions/workflows/ci.yml/badge.svg)](https://github.com/Anamandla/SwiftPay/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+
 SwiftPay is a mobile-first payment application that enables users to send money, pay bills, and manage their finances securely and instantly — all from their smartphone. Once completed, SwiftPay will allow individuals to transfer funds between accounts, track spending, and receive real-time transaction notifications without needing a traditional bank branch.
 
 ---
@@ -188,6 +192,43 @@ The `RepositoryFactory` was chosen over Dependency Injection frameworks because 
 - **Database:** PostgreSQL
 - **Authentication:** JWT + OAuth 2.0
 - **Notifications:** Firebase Cloud Messaging (FCM)
+
+---
+
+## 🏁 Getting Started
+
+### Prerequisites
+- Python 3.10 or higher
+- Git
+- A GitHub account
+
+### Setup
+```bash
+git clone https://github.com/YOUR_USERNAME/SwiftPay.git
+cd SwiftPay
+python --version              # Verify Python 3.10+
+python tests/run_all_tests.py # Run all tests — no pip install needed
+```
+
+### Start the API
+```bash
+cd api
+python app.py                 # Starts on http://localhost:8080
+```
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed setup instructions, coding standards, and the PR process. Check [ROADMAP.md](./ROADMAP.md) for planned features.
+
+---
+
+## 📋 Features Open for Contribution
+
+| Feature | Label | Difficulty | Issue |
+|---------|-------|------------|-------|
+| FileSystem & Database repository stubs | `repository`, `good-first-issue` | Beginner | [#41](https://github.com/Anamandla/SwiftPay/issues/41) |
+| Add requirements.txt and setup.py | `ci-cd`, `good-first-issue` | Beginner | [#54](https://github.com/Anamandla/SwiftPay/issues/54) |
+| Write CONTRIBUTING.md | `documentation`, `good-first-issue` | Beginner | [#55](https://github.com/Anamandla/SwiftPay/issues/55) |
+| Add MIT License | `documentation`, `good-first-issue` | Beginner | [#57](https://github.com/Anamandla/SwiftPay/issues/57) |
+| Update README with Getting Started guide | `documentation`, `good-first-issue` | Beginner | [#59](https://github.com/Anamandla/SwiftPay/issues/59) |
 
 ---
 
